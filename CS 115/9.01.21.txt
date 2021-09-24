@@ -1,0 +1,9 @@
+picobot
+    tools
+        move arounnd on the compass (NEWS)
+        "sense" obstacles in the immediate vicinity
+    goal: explore/cover space/room
+    challenge: how to leverage
+        local info (sensing the openness/closedness NEWS)
+        for a global task (coverage of the full room)
+    Remember: the bot has no map

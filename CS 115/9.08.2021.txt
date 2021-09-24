@@ -1,0 +1,10 @@
+Three S's in Nicolosi coding:
+    Syntax
+    Semantics
+    Style
+
+programming/coding is mostly about communication
+    between the programmer and the computer
+    and between programmers
+
+programs are read much more often than they are written
