@@ -6,18 +6,18 @@ def getLen(L):
     return 0 if not L else 1 + getLen(L[1:])
 
 def dotProduct(L, K):
-    return 0.0 if getLen(L)==0 else L[0]*K[0] if getLen(L)==1 else L[0]*K[0] + dotProduct(L[1:], K[1:])
+    return 0.0 if not L else L[0]*K[0] if getLen(L)==1 else L[0]*K[0] + dotProduct(L[1:], K[1:])
 
 def removeAll(e, L):
-    return [L[0]] if getLen(L)==1 and L[0]!=e else [] if getLen(L)==0 else [L[0]] + removeAll(e, L[1:]) if L[0]!=e else removeAll(e, L[1:])
+    return [L[0]] if getLen(L)==1 and L[0]!=e else [] if not L else [L[0]] + removeAll(e, L[1:]) if L[0]!=e else removeAll(e, L[1:])
 
 def geometricSeq(n, f, b):
     return b if n==1 else f*geometricSeq(n-1, f, b)
 
 def deepReverse(L):
-    return [] if getLen(L)==0 else [deepReverse(L[getLen(L)-1])] + deepReverse(L[:getLen(L)-1]) if isinstance(L[getLen(L)-1], list) else [L[0]] if getLen(L)==1 else [L[getLen(L)-1]] + deepReverse(L[:getLen(L)-1])
+    return [] if not L else [deepReverse(L[-1])] + deepReverse(L[:-1]) if isinstance(L[-1], list) else [L[0]] if getLen(L)==1 else [L[-1]] + deepReverse(L[:-1])
 
-# The actually readable functions are down here, I compact them cos it's cool
+# The actually readable functions are down here, I compact them cos they look cool
 """ 
 def getLen(L):
     if(not L):
