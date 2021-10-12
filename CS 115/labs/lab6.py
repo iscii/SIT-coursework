@@ -28,7 +28,7 @@ def LLCS(S1, S2):
             return 0
         return (1 if c==S[0] else 0) + getCount(c, S[1:])
     def compareString(c1, S2):
-        '''Returns true if the letter exists in both strings'''
+        '''Returns true if the letter exists in both strings and the count of the letter is equal in both strings'''
         if(not S2):
             return False
         #print(c1, S1)
@@ -40,6 +40,7 @@ def LLCS(S1, S2):
         that means there is (or are) extra characters of that letter in S1 and therefore it will be skipped; it is not a common
         subcharacter off the strings. The print statements above may help, but they are not clear since compareString is called
         per iteration of LLCS and itself.
+        This corrects for three l's in S1 being counted since they exist in S2.
         """
         return True if c1==S2[0] and getCount(c1, S2)==getCount(c1, S1) else compareString(c1, S2[1:])
     if(not S1):
