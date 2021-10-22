@@ -5,6 +5,9 @@ Pledge: I pledge my honor that I have abided by the Stevens Honor System.
 
 CS115 - Lab 5
 '''
+
+# i did this wrong how to memoize this?
+
 import time
 
 words = []
