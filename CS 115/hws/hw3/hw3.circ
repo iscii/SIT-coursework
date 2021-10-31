@@ -85,22 +85,22 @@
     <wire from="(310,110)" to="(350,110)"/>
     <wire from="(40,240)" to="(140,240)"/>
     <wire from="(40,90)" to="(140,90)"/>
-    <comp lib="1" loc="(270,220)" name="NOT Gate"/>
-    <comp lib="0" loc="(40,240)" name="Pin"/>
     <comp lib="0" loc="(350,220)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
     </comp>
-    <comp lib="0" loc="(40,90)" name="Pin"/>
-    <comp lib="1" loc="(270,110)" name="NOT Gate"/>
-    <comp lib="6" loc="(93,36)" name="Text">
-      <a name="text" val="Provided for you"/>
-      <a name="font" val="SansSerif plain 16"/>
-    </comp>
+    <comp lib="1" loc="(270,220)" name="NOT Gate"/>
     <comp lib="0" loc="(350,110)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
     </comp>
+    <comp lib="1" loc="(270,110)" name="NOT Gate"/>
+    <comp lib="0" loc="(40,90)" name="Pin"/>
+    <comp lib="6" loc="(93,36)" name="Text">
+      <a name="text" val="Provided for you"/>
+      <a name="font" val="SansSerif plain 16"/>
+    </comp>
+    <comp lib="0" loc="(40,240)" name="Pin"/>
     <comp lib="1" loc="(190,110)" name="OR Gate"/>
     <comp lib="1" loc="(190,220)" name="OR Gate"/>
   </circuit>
@@ -115,8 +115,8 @@
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="58" y="74">s</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="59" y="63">d</text>
       <circ-port height="10" pin="440,270" width="10" x="75" y="55"/>
-      <circ-port height="8" pin="100,420" width="8" x="46" y="66"/>
       <circ-port height="8" pin="80,240" width="8" x="46" y="56"/>
+      <circ-port height="8" pin="100,420" width="8" x="46" y="66"/>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="65" y="47">DL</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="69" y="65">Q</text>
       <circ-anchor facing="east" height="6" width="6" x="77" y="57"/>
@@ -135,29 +135,29 @@
     <wire from="(90,380)" to="(160,380)"/>
     <wire from="(90,240)" to="(160,240)"/>
     <wire from="(90,240)" to="(90,300)"/>
+    <comp lib="1" loc="(210,400)" name="AND Gate"/>
     <comp lib="1" loc="(90,330)" name="NOT Gate">
       <a name="facing" val="south"/>
     </comp>
-    <comp lib="0" loc="(440,270)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-    </comp>
     <comp lib="0" loc="(80,240)" name="Pin"/>
-    <comp lib="6" loc="(93,35)" name="Text">
-      <a name="text" val="Provided for you"/>
+    <comp lib="6" loc="(426,205)" name="Text">
+      <a name="text" val="We ignore the NOT Q output"/>
+    </comp>
+    <comp lib="0" loc="(100,420)" name="Pin"/>
+    <comp lib="6" loc="(62,452)" name="Text">
+      <a name="text" val="Strobe"/>
     </comp>
     <comp loc="(350,260)" name="SR_Latch">
       <a name="label" val="SR"/>
     </comp>
-    <comp lib="6" loc="(62,452)" name="Text">
-      <a name="text" val="Strobe"/>
-    </comp>
-    <comp lib="1" loc="(210,400)" name="AND Gate"/>
-    <comp lib="6" loc="(426,205)" name="Text">
-      <a name="text" val="We ignore the NOT Q output"/>
-    </comp>
     <comp lib="1" loc="(210,260)" name="AND Gate"/>
-    <comp lib="0" loc="(100,420)" name="Pin"/>
+    <comp lib="0" loc="(440,270)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="6" loc="(93,35)" name="Text">
+      <a name="text" val="Provided for you"/>
+    </comp>
   </circuit>
   <circuit name="Decoder">
     <a name="circuit" val="Decoder"/>
@@ -203,34 +203,34 @@
     <comp lib="0" loc="(60,140)" name="Pin">
       <a name="facing" val="south"/>
     </comp>
-    <comp lib="1" loc="(280,380)" name="AND Gate"/>
+    <comp lib="1" loc="(190,150)" name="NOT Gate"/>
+    <comp lib="6" loc="(92,35)" name="Text">
+      <a name="text" val="Provided for you"/>
+      <a name="font" val="SansSerif plain 16"/>
+    </comp>
     <comp lib="1" loc="(280,170)" name="AND Gate"/>
     <comp lib="0" loc="(340,170)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
     </comp>
+    <comp lib="0" loc="(110,140)" name="Pin">
+      <a name="facing" val="south"/>
+    </comp>
+    <comp lib="1" loc="(280,240)" name="AND Gate"/>
+    <comp lib="1" loc="(190,190)" name="NOT Gate"/>
+    <comp lib="0" loc="(340,310)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="1" loc="(280,380)" name="AND Gate"/>
     <comp lib="0" loc="(340,240)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
     </comp>
-    <comp lib="1" loc="(190,190)" name="NOT Gate"/>
-    <comp lib="0" loc="(340,380)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-    </comp>
-    <comp lib="6" loc="(92,35)" name="Text">
-      <a name="text" val="Provided for you"/>
-      <a name="font" val="SansSerif plain 16"/>
-    </comp>
-    <comp lib="1" loc="(280,310)" name="AND Gate"/>
-    <comp lib="1" loc="(280,240)" name="AND Gate"/>
-    <comp lib="0" loc="(110,140)" name="Pin">
-      <a name="facing" val="south"/>
-    </comp>
     <comp lib="1" loc="(190,220)" name="NOT Gate"/>
+    <comp lib="1" loc="(280,310)" name="AND Gate"/>
     <comp lib="1" loc="(190,330)" name="NOT Gate"/>
-    <comp lib="1" loc="(190,150)" name="NOT Gate"/>
-    <comp lib="0" loc="(340,310)" name="Pin">
+    <comp lib="0" loc="(340,380)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
     </comp>
@@ -242,12 +242,12 @@
     <a name="clabelfont" val="SansSerif plain 12"/>
     <appear>
       <circ-port height="10" pin="870,470" width="10" x="85" y="55"/>
-      <circ-port height="8" pin="160,480" width="8" x="46" y="116"/>
-      <circ-port height="8" pin="160,330" width="8" x="46" y="76"/>
-      <circ-port height="8" pin="160,540" width="8" x="46" y="136"/>
-      <circ-port height="10" pin="870,550" width="10" x="85" y="75"/>
       <circ-port height="10" pin="870,510" width="10" x="85" y="65"/>
+      <circ-port height="8" pin="160,540" width="8" x="46" y="136"/>
+      <circ-port height="8" pin="160,330" width="8" x="46" y="76"/>
       <circ-port height="8" pin="160,360" width="8" x="46" y="86"/>
+      <circ-port height="8" pin="160,480" width="8" x="46" y="116"/>
+      <circ-port height="10" pin="870,550" width="10" x="85" y="75"/>
       <circ-port height="8" pin="160,680" width="8" x="46" y="186"/>
       <path d="M61,56 Q65,66 69,56" fill="none" stroke="#808080" stroke-width="2"/>
       <rect fill="none" height="146" stroke="#000000" stroke-width="2" width="42" x="50" y="55"/>
@@ -295,6 +295,7 @@
     <wire from="(670,530)" to="(800,530)"/>
     <wire from="(590,670)" to="(590,730)"/>
     <wire from="(680,440)" to="(680,500)"/>
+    <wire from="(550,370)" to="(630,370)"/>
     <wire from="(190,710)" to="(390,710)"/>
     <wire from="(850,450)" to="(860,450)"/>
     <wire from="(850,570)" to="(860,570)"/>
@@ -412,121 +413,269 @@
     <wire from="(530,560)" to="(540,560)"/>
     <wire from="(590,340)" to="(600,340)"/>
     <wire from="(630,340)" to="(640,340)"/>
-    <comp loc="(430,340)" name="D_Latch"/>
+    <comp lib="1" loc="(850,450)" name="OR Gate"/>
+    <comp lib="6" loc="(170,56)" name="Text">
+      <a name="text" val="Implement the WRITE operation"/>
+    </comp>
+    <comp lib="1" loc="(850,510)" name="OR Gate"/>
     <comp lib="6" loc="(105,349)" name="Text">
       <a name="text" val="2Bit Addr"/>
-    </comp>
-    <comp lib="0" loc="(160,540)" name="Pin"/>
-    <comp lib="6" loc="(105,688)" name="Text">
-      <a name="text" val="Write"/>
-    </comp>
-    <comp loc="(530,560)" name="D_Latch"/>
-    <comp lib="0" loc="(870,550)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-    </comp>
-    <comp lib="0" loc="(160,360)" name="Pin"/>
-    <comp lib="6" loc="(102,156)" name="Text">
-      <a name="text" val="Issac Zheng"/>
-    </comp>
-    <comp loc="(530,340)" name="D_Latch"/>
-    <comp loc="(630,340)" name="D_Latch"/>
-    <comp lib="1" loc="(330,680)" name="AND Gate"/>
-    <comp lib="1" loc="(850,510)" name="OR Gate"/>
-    <comp lib="1" loc="(850,450)" name="OR Gate"/>
-    <comp lib="1" loc="(330,350)" name="AND Gate"/>
-    <comp lib="0" loc="(160,680)" name="Pin"/>
-    <comp lib="6" loc="(104,514)" name="Text">
-      <a name="text" val="3Bit Data"/>
-    </comp>
-    <comp lib="6" loc="(314,84)" name="Text">
-      <a name="text" val="The 3 Bit Output should reflect the values stored in the word selected by the 2Bit Addr"/>
-    </comp>
-    <comp lib="6" loc="(34,155)" name="Text">
-      <a name="text" val="Name:"/>
-    </comp>
-    <comp lib="0" loc="(870,510)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
     </comp>
     <comp lib="6" loc="(139,19)" name="Text">
       <a name="text" val="Implement  3 Bit, 4 Word RAM"/>
     </comp>
     <comp lib="0" loc="(160,330)" name="Pin"/>
-    <comp lib="6" loc="(170,56)" name="Text">
-      <a name="text" val="Implement the WRITE operation"/>
-    </comp>
-    <comp lib="1" loc="(330,460)" name="AND Gate"/>
     <comp loc="(630,670)" name="D_Latch"/>
-    <comp loc="(210,330)" name="Decoder"/>
-    <comp loc="(530,450)" name="D_Latch"/>
-    <comp lib="6" loc="(280,180)" name="Text">
-      <a name="text" val="I pledge my honor that I have abided by the Stevens Honor System."/>
-    </comp>
-    <comp loc="(430,560)" name="D_Latch"/>
-    <comp loc="(430,670)" name="D_Latch"/>
-    <comp lib="1" loc="(330,570)" name="AND Gate"/>
-    <comp loc="(630,450)" name="D_Latch"/>
+    <comp lib="1" loc="(850,570)" name="OR Gate"/>
     <comp lib="0" loc="(870,470)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
     </comp>
+    <comp loc="(630,450)" name="D_Latch"/>
+    <comp loc="(430,450)" name="D_Latch"/>
+    <comp loc="(430,670)" name="D_Latch"/>
+    <comp lib="0" loc="(160,540)" name="Pin"/>
+    <comp loc="(630,340)" name="D_Latch"/>
+    <comp loc="(530,450)" name="D_Latch"/>
+    <comp lib="1" loc="(330,460)" name="AND Gate"/>
+    <comp lib="1" loc="(330,570)" name="AND Gate"/>
+    <comp lib="6" loc="(102,156)" name="Text">
+      <a name="text" val="Issac Zheng"/>
+    </comp>
     <comp lib="6" loc="(36,180)" name="Text">
       <a name="text" val="Pledge:"/>
     </comp>
-    <comp lib="1" loc="(850,570)" name="OR Gate"/>
+    <comp lib="1" loc="(330,350)" name="AND Gate"/>
+    <comp lib="0" loc="(870,510)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp loc="(430,560)" name="D_Latch"/>
+    <comp lib="0" loc="(160,510)" name="Pin"/>
+    <comp loc="(630,560)" name="D_Latch"/>
+    <comp lib="1" loc="(330,680)" name="AND Gate"/>
+    <comp loc="(530,670)" name="D_Latch"/>
+    <comp lib="6" loc="(280,180)" name="Text">
+      <a name="text" val="I pledge my honor that I have abided by the Stevens Honor System."/>
+    </comp>
+    <comp lib="6" loc="(104,514)" name="Text">
+      <a name="text" val="3Bit Data"/>
+    </comp>
+    <comp loc="(530,560)" name="D_Latch"/>
+    <comp lib="0" loc="(160,360)" name="Pin"/>
+    <comp lib="0" loc="(870,550)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </comp>
     <comp lib="0" loc="(160,480)" name="Pin"/>
+    <comp loc="(210,330)" name="Decoder"/>
+    <comp lib="0" loc="(160,680)" name="Pin"/>
+    <comp lib="6" loc="(34,155)" name="Text">
+      <a name="text" val="Name:"/>
+    </comp>
+    <comp lib="6" loc="(105,688)" name="Text">
+      <a name="text" val="Write"/>
+    </comp>
+    <comp loc="(530,340)" name="D_Latch"/>
+    <comp lib="6" loc="(314,84)" name="Text">
+      <a name="text" val="The 3 Bit Output should reflect the values stored in the word selected by the 2Bit Addr"/>
+    </comp>
     <comp lib="6" loc="(218,113)" name="Text">
       <a name="text" val="If you need help, look at slides 9-16 in week9.pdf"/>
     </comp>
-    <comp loc="(530,670)" name="D_Latch"/>
-    <comp lib="0" loc="(160,510)" name="Pin"/>
-    <comp loc="(430,450)" name="D_Latch"/>
-    <comp loc="(630,560)" name="D_Latch"/>
+    <comp loc="(430,340)" name="D_Latch"/>
   </circuit>
   <circuit name="Remainder">
     <a name="circuit" val="Remainder"/>
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
-    <comp lib="6" loc="(846,240)" name="Text">
-      <a name="text" val="Remainder"/>
-      <a name="font" val="SansSerif plain 16"/>
+    <wire from="(170,230)" to="(170,360)"/>
+    <wire from="(630,210)" to="(630,350)"/>
+    <wire from="(220,390)" to="(280,390)"/>
+    <wire from="(220,410)" to="(280,410)"/>
+    <wire from="(220,250)" to="(280,250)"/>
+    <wire from="(270,220)" to="(450,220)"/>
+    <wire from="(330,400)" to="(630,400)"/>
+    <wire from="(240,190)" to="(240,270)"/>
+    <wire from="(630,370)" to="(630,400)"/>
+    <wire from="(220,300)" to="(220,320)"/>
+    <wire from="(430,310)" to="(720,310)"/>
+    <wire from="(250,200)" to="(480,200)"/>
+    <wire from="(240,270)" to="(280,270)"/>
+    <wire from="(200,190)" to="(240,190)"/>
+    <wire from="(180,280)" to="(180,310)"/>
+    <wire from="(220,360)" to="(220,390)"/>
+    <wire from="(440,210)" to="(480,210)"/>
+    <wire from="(440,270)" to="(480,270)"/>
+    <wire from="(150,490)" to="(180,490)"/>
+    <wire from="(260,140)" to="(480,140)"/>
+    <wire from="(220,360)" to="(250,360)"/>
+    <wire from="(260,140)" to="(260,300)"/>
+    <wire from="(450,250)" to="(480,250)"/>
+    <wire from="(540,190)" to="(560,190)"/>
+    <wire from="(540,230)" to="(560,230)"/>
+    <wire from="(210,240)" to="(210,340)"/>
+    <wire from="(330,260)" to="(350,260)"/>
+    <wire from="(530,210)" to="(560,210)"/>
+    <wire from="(220,260)" to="(220,300)"/>
+    <wire from="(160,210)" to="(160,320)"/>
+    <wire from="(150,360)" to="(170,360)"/>
+    <wire from="(200,470)" to="(220,470)"/>
+    <wire from="(200,230)" to="(220,230)"/>
+    <wire from="(250,150)" to="(250,200)"/>
+    <wire from="(200,480)" to="(210,480)"/>
+    <wire from="(210,240)" to="(280,240)"/>
+    <wire from="(210,340)" to="(280,340)"/>
+    <wire from="(200,450)" to="(720,450)"/>
+    <wire from="(210,120)" to="(210,240)"/>
+    <wire from="(530,150)" to="(540,150)"/>
+    <wire from="(530,270)" to="(540,270)"/>
+    <wire from="(630,370)" to="(640,370)"/>
+    <wire from="(630,350)" to="(640,350)"/>
+    <wire from="(210,120)" to="(470,120)"/>
+    <wire from="(160,320)" to="(220,320)"/>
+    <wire from="(220,260)" to="(280,260)"/>
+    <wire from="(230,320)" to="(280,320)"/>
+    <wire from="(210,340)" to="(210,480)"/>
+    <wire from="(350,320)" to="(350,330)"/>
+    <wire from="(220,230)" to="(460,230)"/>
+    <wire from="(240,190)" to="(480,190)"/>
+    <wire from="(220,230)" to="(220,250)"/>
+    <wire from="(150,190)" to="(150,280)"/>
+    <wire from="(450,220)" to="(450,250)"/>
+    <wire from="(250,150)" to="(480,150)"/>
+    <wire from="(460,230)" to="(460,260)"/>
+    <wire from="(180,360)" to="(220,360)"/>
+    <wire from="(220,300)" to="(260,300)"/>
+    <wire from="(180,330)" to="(180,360)"/>
+    <wire from="(180,310)" to="(280,310)"/>
+    <wire from="(180,330)" to="(280,330)"/>
+    <wire from="(270,130)" to="(270,220)"/>
+    <wire from="(150,280)" to="(180,280)"/>
+    <wire from="(540,150)" to="(540,190)"/>
+    <wire from="(540,230)" to="(540,270)"/>
+    <wire from="(200,210)" to="(230,210)"/>
+    <wire from="(250,200)" to="(250,360)"/>
+    <wire from="(180,280)" to="(270,280)"/>
+    <wire from="(610,210)" to="(630,210)"/>
+    <wire from="(350,300)" to="(380,300)"/>
+    <wire from="(350,320)" to="(380,320)"/>
+    <wire from="(690,360)" to="(720,360)"/>
+    <wire from="(330,330)" to="(350,330)"/>
+    <wire from="(180,450)" to="(180,490)"/>
+    <wire from="(270,130)" to="(480,130)"/>
+    <wire from="(460,260)" to="(480,260)"/>
+    <wire from="(230,210)" to="(230,320)"/>
+    <wire from="(350,260)" to="(350,300)"/>
+    <wire from="(230,210)" to="(440,210)"/>
+    <wire from="(150,450)" to="(170,450)"/>
+    <wire from="(150,190)" to="(170,190)"/>
+    <wire from="(470,120)" to="(470,160)"/>
+    <wire from="(470,160)" to="(480,160)"/>
+    <wire from="(470,220)" to="(480,220)"/>
+    <wire from="(470,280)" to="(480,280)"/>
+    <wire from="(160,210)" to="(170,210)"/>
+    <wire from="(150,320)" to="(160,320)"/>
+    <wire from="(170,360)" to="(180,360)"/>
+    <wire from="(270,220)" to="(270,280)"/>
+    <wire from="(440,210)" to="(440,270)"/>
+    <wire from="(470,160)" to="(470,220)"/>
+    <wire from="(470,220)" to="(470,280)"/>
+    <wire from="(220,410)" to="(220,470)"/>
+    <comp lib="0" loc="(720,310)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
     </comp>
-    <comp lib="0" loc="(150,260)" name="Pin"/>
-    <comp lib="6" loc="(63,224)" name="Text">
+    <comp lib="1" loc="(330,400)" name="AND Gate">
+      <a name="label" val="c"/>
+    </comp>
+    <comp lib="6" loc="(63,324)" name="Text">
       <a name="text" val="Numerator"/>
       <a name="font" val="SansSerif plain 16"/>
     </comp>
-    <comp lib="6" loc="(984,359)" name="Text">
+    <comp lib="1" loc="(330,260)" name="AND Gate">
+      <a name="label" val="a'bc'"/>
+    </comp>
+    <comp lib="0" loc="(150,490)" name="Pin"/>
+    <comp lib="0" loc="(150,280)" name="Pin"/>
+    <comp lib="1" loc="(610,210)" name="OR Gate"/>
+    <comp lib="1" loc="(530,270)" name="AND Gate">
+      <a name="label" val="ab'c'"/>
+    </comp>
+    <comp lib="1" loc="(530,150)" name="AND Gate">
+      <a name="label" val="abc"/>
+    </comp>
+    <comp lib="6" loc="(116,433)" name="Text">
+      <a name="text" val="x"/>
+    </comp>
+    <comp lib="6" loc="(112,274)" name="Text">
+      <a name="text" val="a"/>
+    </comp>
+    <comp lib="6" loc="(118,474)" name="Text">
+      <a name="text" val="y"/>
+    </comp>
+    <comp lib="6" loc="(757,350)" name="Text">
+      <a name="text" val="m"/>
+    </comp>
+    <comp lib="0" loc="(720,450)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="6" loc="(341,390)" name="Text">
+      <a name="text" val="xy'"/>
+    </comp>
+    <comp lib="6" loc="(114,357)" name="Text">
+      <a name="text" val="c"/>
+    </comp>
+    <comp lib="0" loc="(150,320)" name="Pin"/>
+    <comp lib="0" loc="(150,360)" name="Pin"/>
+    <comp lib="1" loc="(530,210)" name="AND Gate">
+      <a name="label" val="a'b'c"/>
+    </comp>
+    <comp lib="6" loc="(984,459)" name="Text">
       <a name="text" val="Error bit (Set when division isn't possible)"/>
       <a name="font" val="SansSerif plain 16"/>
     </comp>
-    <comp lib="0" loc="(150,220)" name="Pin"/>
-    <comp lib="6" loc="(407,46)" name="Text">
-      <a name="text" val="(Hint: You may want to write a truth table first)"/>
+    <comp lib="6" loc="(496,110)" name="Text">
+      <a name="text" val="xy"/>
     </comp>
-    <comp lib="0" loc="(150,180)" name="Pin"/>
-    <comp lib="6" loc="(406,23)" name="Text">
-      <a name="text" val="Part 2: Create a circuit to calculate remainders, given a 3-bit numerator and 2-bit divisor."/>
+    <comp lib="6" loc="(846,340)" name="Text">
+      <a name="text" val="Remainder"/>
+      <a name="font" val="SansSerif plain 16"/>
     </comp>
-    <comp lib="0" loc="(150,350)" name="Pin"/>
-    <comp lib="6" loc="(62,379)" name="Text">
+    <comp lib="1" loc="(200,190)" name="NOT Gate"/>
+    <comp lib="6" loc="(62,479)" name="Text">
       <a name="text" val="Divisor"/>
       <a name="font" val="SansSerif plain 16"/>
     </comp>
-    <comp lib="0" loc="(720,260)" name="Pin">
+    <comp lib="1" loc="(200,230)" name="NOT Gate"/>
+    <comp lib="0" loc="(150,450)" name="Pin"/>
+    <comp lib="1" loc="(330,330)" name="AND Gate">
+      <a name="label" val="ab'c"/>
+    </comp>
+    <comp loc="(200,450)" name="Decoder"/>
+    <comp lib="1" loc="(200,210)" name="NOT Gate"/>
+    <comp lib="6" loc="(407,46)" name="Text">
+      <a name="text" val="(Hint: You may want to write a truth table first)"/>
+    </comp>
+    <comp lib="1" loc="(430,310)" name="OR Gate"/>
+    <comp lib="0" loc="(720,360)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
     </comp>
-    <comp lib="0" loc="(720,350)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
+    <comp lib="6" loc="(406,23)" name="Text">
+      <a name="text" val="Part 2: Create a circuit to calculate remainders, given a 3-bit numerator and 2-bit divisor."/>
     </comp>
-    <comp lib="0" loc="(720,210)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
+    <comp lib="6" loc="(295,298)" name="Text">
+      <a name="text" val="xy"/>
     </comp>
-    <comp lib="0" loc="(150,390)" name="Pin"/>
+    <comp lib="6" loc="(115,311)" name="Text">
+      <a name="text" val="b"/>
+    </comp>
+    <comp lib="6" loc="(755,299)" name="Text">
+      <a name="text" val="n"/>
+    </comp>
+    <comp lib="1" loc="(690,360)" name="OR Gate"/>
   </circuit>
 </project>
