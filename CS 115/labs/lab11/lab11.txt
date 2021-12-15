@@ -1,0 +1,15 @@
+Issac Zheng
+I pledge my honor that I have abided by the Stevens Honor System.
+
+1. How low could you start the stack?
+    - you can start as low as you'd like as long as the stack memory does not override any used registers. With our convention, this would be 16.
+2. How deep does the stack get?
+    - in the case of the slide's example with the fibonacci sequence, it goes 6 registers deep.
+3. What are the possible values of r14?
+    - 03 and 12
+
+Notes:
+basically, calln drops a flag/checkpoint on the next line and 
+jumps to the specified line to execute stuff. jumpr jumps the code back to
+the checkpoint.
+
