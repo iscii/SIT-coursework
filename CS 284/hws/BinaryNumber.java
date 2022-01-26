@@ -7,8 +7,7 @@ public class BinaryNumber {
 	// creates a binary number of length "length" and consisting only of zeros
 	public BinaryNumber(int length) {
 		if (length < 0) {
-			System.out.println("not a valid length");
-			return;
+			throw new IllegalArgumentException("not a valid length");
 		}
 
 		int[] temp = new int[length];
@@ -33,8 +32,7 @@ public class BinaryNumber {
 					temp[i] = 0;
 					break;
 				default:
-					System.out.println("not a valid binary number");
-					return;
+					throw new IllegalArgumentException("not a valid binary number");
 			}
 		}
 
@@ -73,9 +71,8 @@ public class BinaryNumber {
 	// The direction parameter indicates:
 	// a left shift when the value is -1, right shift when the value is 1
 	public int[] bitShift(int direction, int amount) {
-		if (!(direction == -1 || direction == 1) || amount < 0 || (direction == 1 && amount > bin.length)) {
-			System.out.println("invalid parameters");
-			return new int[] {};
+		if (!(direction == -1 || direction == 1) || amount < 0) {
+			throw new IllegalArgumentException("invalid parameters");
 		}
 		if (direction == 1) {
 			int[] temp = new int[bin.length - amount];
@@ -108,8 +105,7 @@ public class BinaryNumber {
 
 	public static int[] bwor(BinaryNumber bn1, BinaryNumber bn2) {
 		if (bn1.getLength() != bn2.getLength()) {
-			System.out.println("not the same lengths");
-			return new int[] {};
+			throw new IllegalArgumentException("not the same lengths");
 		}
 		int[] temp = new int[bn1.getLength()];
 		for (int i = 0; i < temp.length; i++) {
@@ -120,8 +116,7 @@ public class BinaryNumber {
 
 	public static int[] bwand(BinaryNumber bn1, BinaryNumber bn2) {
 		if (bn1.getLength() != bn2.getLength()) {
-			System.out.println("not the same lengths");
-			return new int[] {};
+			throw new IllegalArgumentException("not the same lengths");
 		}
 		int[] temp = new int[bn1.getLength()];
 		for (int i = 0; i < temp.length; i++) {
@@ -137,33 +132,21 @@ public class BinaryNumber {
 		int[] smol;
 		// prepend zeros to smaller number to match larger number length
 		if (bin.length > aBinaryNumber.getLength()) {
-			System.out.println(Arrays.toString(aBinaryNumber.getInnerArray()));
-			System.out.println(bin.length - aBinaryNumber.getLength());
 			smol = BinaryNumber.prepend(aBinaryNumber.getInnerArray(), bin.length - aBinaryNumber.getLength());
-			System.out.println(Arrays.toString(smol));
 			big = bin.clone();
 		} else if (bin.length < aBinaryNumber.getLength()) {
 			smol = BinaryNumber.prepend(bin, aBinaryNumber.getLength() - bin.length);
-			// System.out.println(aBinaryNumber.getLength() - bin.length);
 			big = aBinaryNumber.getInnerArray().clone();
 		} else {
 			smol = bin.clone();
 			big = aBinaryNumber.getInnerArray().clone();
 		}
-		System.out.println(Arrays.toString(smol));
-		System.out.println(Arrays.toString(big));
-		// create temp with +1 length (carry potential)
 		int[] temp = new int[big.length + 1];
 		int c = 0;
 		// add and dump result into temp from right to left
 		for (int i = temp.length - 2; i >= 0; i--) {
 			temp[i + 1] = smol[i] + big[i] + c > 1 ? (smol[i] + big[i] + c) % 2 : smol[i] + big[i] + c;
-			System.out.println(smol[i] + big[i]);
-			System.out.println(c);
-			System.out.println(smol[i] + big[i] + c);
-			System.out.println();
 			if (smol[i] + big[i] + c <= 1){
-				System.out.println("no carry");
 				c = 0;
 			}
 			else{
