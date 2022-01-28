@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class BinaryNumber {
 	private int[] bin;
-	private int length;
+	//private int length;
 
 	// creates a binary number of length "length" and consisting only of zeros
 	public BinaryNumber(int length) {
@@ -16,7 +16,6 @@ public class BinaryNumber {
 		}
 
 		bin = temp;
-		length = bin.length;
 	}
 
 	// creates a binary number using a string
@@ -37,12 +36,11 @@ public class BinaryNumber {
 		}
 
 		bin = temp;
-		length = bin.length;
 	}
 
 	// returns the length of a binary
 	public int getLength() {
-		return length;
+		return bin.length;
 	}
 
 	// returns the integer array representing a binary number
@@ -146,19 +144,32 @@ public class BinaryNumber {
 		// add and dump result into temp from right to left
 		for (int i = temp.length - 2; i >= 0; i--) {
 			temp[i + 1] = smol[i] + big[i] + c > 1 ? (smol[i] + big[i] + c) % 2 : smol[i] + big[i] + c;
-			if (smol[i] + big[i] + c <= 1){
+			if (smol[i] + big[i] + c <= 1) {
 				c = 0;
-			}
-			else{
-				c=1;
+			} else {
+				c = 1;
 			}
 		}
 		if (c == 1) {
 			temp[0] = c;
 		}
-		// purge leading 0s?
-		// set bin = temp
-		bin = temp;
+		// purge leading 0s
+		// find index of first 1
+		int idx = 0;
+		for (int i = 0; i < temp.length; i++) {
+			if (temp[i] == 1)
+				break;
+			idx++;
+		}
+		if (idx > 0) {
+			int[] temp2 = new int[temp.length - idx];
+			for (int i = 0; i < temp.length - idx; i++) {
+				temp2[i] = temp[i + idx];
+			}
+			bin = temp2;
+		} else {
+			bin = temp;
+		}
 	}
 
 	public String toString() {
