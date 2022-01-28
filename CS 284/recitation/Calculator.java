@@ -1,5 +1,3 @@
-import java.io.Console;
-
 public class Calculator{
     int base;
 
