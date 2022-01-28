@@ -23,6 +23,7 @@ class Main{
         System.out.println(Arrays.toString(b.bitShift(-1, 1))); */
         //BinaryNumber c = new BinaryNumber("10101");
         BinaryNumber d = new BinaryNumber("1001");
+        BinaryNumber j = new BinaryNumber("101010");
         /* BinaryNumber e = new BinaryNumber("0101");
         BinaryNumber f = new BinaryNumber("10110");
         BinaryNumber g = new BinaryNumber("11101");
@@ -43,6 +44,7 @@ class Main{
         System.out.println(f);
         h.add(i);
         System.out.println(h);  */
-        System.out.println(Arrays.toString(d.bitShift(-1 ,2)));
+        j.bitShift(1, 2);
+        System.out.println(j);
     }
 }

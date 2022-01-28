@@ -81,14 +81,16 @@ public class BinaryNumber {
 			}
 			bin = temp;
 		}
-		// dir == -1
-		int[] temp = new int[bin.length + amount];
-		int bl = bin.length - 1;
-		for (int i = 0; i < bin.length; i++) {
-			temp[i] = bin[bl];
-			bl--;
+		else{
+			// dir == -1
+			int[] temp = new int[bin.length + amount];
+			int bl = bin.length - 1;
+			for (int i = 0; i < bin.length; i++) {
+				temp[i] = bin[bl];
+				bl--;
+			}
+			bin = temp;
 		}
-		bin = temp;
 	}
 
 	public static int[] prepend(int[] arr, int l) {
