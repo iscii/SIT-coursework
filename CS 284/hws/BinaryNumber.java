@@ -68,7 +68,7 @@ public class BinaryNumber {
 	// the left or right.
 	// The direction parameter indicates:
 	// a left shift when the value is -1, right shift when the value is 1
-	public int[] bitShift(int direction, int amount) {
+	public void bitShift(int direction, int amount) {
 		if (!(direction == -1 || direction == 1) || amount < 0) {
 			throw new IllegalArgumentException("invalid parameters");
 		}
@@ -79,7 +79,7 @@ public class BinaryNumber {
 				temp[i] = bin[bl];
 				bl--;
 			}
-			return temp;
+			bin = temp;
 		}
 		// dir == -1
 		int[] temp = new int[bin.length + amount];
@@ -88,7 +88,7 @@ public class BinaryNumber {
 			temp[i] = bin[bl];
 			bl--;
 		}
-		return temp;
+		bin = temp;
 	}
 
 	public static int[] prepend(int[] arr, int l) {
