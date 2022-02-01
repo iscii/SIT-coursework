@@ -163,7 +163,7 @@
 ;; Type signature: (xor boolean boolean) -> boolean
 ;; 2 PTS
 (define (xor p q)
-  (not (or p q))
+  (or (and p (not q)) (and q (not p)))
 )
 
 
