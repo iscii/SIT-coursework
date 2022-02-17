@@ -295,18 +295,15 @@
 ;; 4 PTS
 (define (difference S1 S2)
 	; get intersection
-	; loop through S1 and remove all in intersection
-	(cond
-		((null? S1) '())
-		((null? S2) '())
-		(else (difference (remove S2 (car S1)) S2))
+	; loop through intersection and remove all from S1 also in intersection
+	(define (loopIntsx S1 Intsx)
+		(cond
+			((null? Intsx) S1)
+			(else (loopIntsx (remove S1 (car Intsx)) (cdr Intsx)))
+		)
 	)
+	(loopIntsx S1 (intersection S1 S2))
 )
-
-
-	
-
-
 
 
 #| Implement "sym-diff" to accept sets S1 and S2 and
@@ -326,4 +323,5 @@
 ;; Type signature: (symR-diff list list) -> set
 ;; 2 PTS
 (define (sym-diff S1 S2)
+	(union (difference S1 S2) (difference S2 S1))
 )
