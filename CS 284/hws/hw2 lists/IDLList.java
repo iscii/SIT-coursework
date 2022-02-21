@@ -76,7 +76,7 @@ public class IDLList<E> {
 	
 	//Given an index, the .add() method adds a new node at the given index 
 	public boolean add(int index, E elem) {
-		if(index<0 || index>this.size) throw new IllegalStateException("index out of bounds");
+		if(index<0 || index>this.size || elem == null) throw new IllegalStateException("index out of bounds");
 		this.indices.add(index, new Node<E>(elem));
 		this.size++;
 
