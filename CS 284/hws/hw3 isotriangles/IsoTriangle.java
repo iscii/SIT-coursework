@@ -60,6 +60,7 @@ public class IsoTriangle {
 	10 */
 	//method to count the total number of Type-2 and Type-3 triangles in a binary tree
 	public Pair<Integer> count_type2_iso_triangle(Node root) {
+		//can prolly do this without using extra parameters but w/e
 		return count_helper(root, 0, 0);
 	}
 
@@ -68,18 +69,15 @@ public class IsoTriangle {
 			return new Pair(0, 0);
 		}
 
-		Integer cl = 0;
-		Integer cr = 0;
-
 		//count nodes to left till null
 		//then, count from each node to right till null
 		//for each of that, add up each right paired with left
 		System.out.println(root);
 		if(root.left != null){
-			cl += count_helper(root.left, ldepth+1, rdepth).value1 + 1;
+			count_helper(root.left, ldepth+1, rdepth);
 		}
 		if(root.right != null){
-			cr += count_helper(root.right, ldepth, rdepth+1).value2 + 1;
+			count_helper(root.right, ldepth, rdepth+1);
 		}
 		
 		//System.out.println(cl + " " + cr + " " + ldepth + " " + rdepth);
@@ -87,7 +85,7 @@ public class IsoTriangle {
 		total_iso_triangle += ldepth != 0 && rdepth != 0 ? 1 : 0;
 
 		//not sure what to return for pairs
-		Pair<Integer> ret_pair = new Pair(cl, cr);
+		Pair<Integer> ret_pair = new Pair(0, 0);
 		return ret_pair;
 	}
 	
