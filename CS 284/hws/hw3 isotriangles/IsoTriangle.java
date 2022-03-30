@@ -1,19 +1,19 @@
-import javax.swing.event.SwingPropertyChangeSupport;
 
 class Pair<E>{
 	E value1;
 	E value2;
-
+	
 	protected Pair(E value1, E value2) {
 		this.value1 = value1;
 		this.value2 = value2;
 	}
 }
-
 class Node<E> {
 	E data;
-	Node<E> left, right;
+	private Node<E> left, right;
 	Integer depth;
+	public Integer left_visit_count = 0;
+	public Integer right_visit_count = 0;
 
 	public Node(E data) {
 		this.data = data;
@@ -29,38 +29,38 @@ class Node<E> {
 		this.depth = depth;
 	}
 
+	public Node<E> getLeft(){
+		this.left_visit_count += 1;
+		return this.left;
+	}
+
+	public Node<E> getRight(){
+		this.right_visit_count += 1;
+		return this.right;
+	}
+
 	public String toString(){
 		return this.data.toString();
 	}
 }
-
-
 public class IsoTriangle {
-	
-	Integer total_iso_triangle = 0;
-	
-
 	/**
-		* 4-step process:
-		preorder traversal
-		* (1) What info to pass to children?
-			left and right depth
-		* (2) What info to return to parent?
-			none
-		* (3) How to handle terminal cases?
-			if child node of "selected root node" does not have children
+	 * 4- step process :
+	 * (1) What info to pass to children ?  
+	 * 			left and right depth
+	 * (2) What info to return to parent ? 
+	 * 			none
+	 * (3) How to handle terminal cases ? 
+	 * 			if child node of "selected root node" does not have children
 				return 0 and go one up
-			if root is null, return pair 0 0
-		* (4) How to update the solution?
-			++
-			+0
-		* count(n as root) = min(left depth, right depth)
-		* @param root node
-		* @return the left and right depth of the root Node as a pair
-	10 */
+	 * (4) How to update the solution ?
+	 * 			++
+				+0
+	 * count(n as root) = min(left depth, right depth)
+	 **/
+	Integer total_iso_triangle = 0;
 	//method to count the total number of Type-2 and Type-3 triangles in a binary tree
 	public Pair<Integer> count_type2_iso_triangle(Node root) {
-		//can prolly do this without using extra parameters but w/e
 		return count_helper(root, 0, 0);
 	}
 
@@ -72,12 +72,14 @@ public class IsoTriangle {
 		//count nodes to left till null
 		//then, count from each node to right till null
 		//for each of that, add up each right paired with left
-		System.out.println(root);
-		if(root.left != null){
-			count_helper(root.left, ldepth+1, rdepth);
+		//System.out.println(root);
+		Node left = root.getLeft();
+		Node right = root.getRight();
+		if(left != null){
+			count_helper(left, ldepth+1, rdepth);
 		}
-		if(root.right != null){
-			count_helper(root.right, ldepth, rdepth+1);
+		if(right != null){
+			count_helper(right, ldepth, rdepth+1);
 		}
 		
 		//System.out.println(cl + " " + cr + " " + ldepth + " " + rdepth);
@@ -88,7 +90,6 @@ public class IsoTriangle {
 		Pair<Integer> ret_pair = new Pair(0, 0);
 		return ret_pair;
 	}
-	
 	/*
 	 * Test Method
 	 * Building a Tree
@@ -171,7 +172,6 @@ public class IsoTriangle {
 		test.count_type2_iso_triangle(n);
 		System.out.println("test 1: " + test.total_iso_triangle + ", expected 2");
 		
-
 		test.total_iso_triangle = 0;
 		n = test.test2();
 		test.count_type2_iso_triangle(n);
