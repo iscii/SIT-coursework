@@ -77,9 +77,9 @@ public class Treap<E extends Comparable<E>> {
 			return true;
 		}
 		if(find(key)) return false;
-		
+
 		Stack<Node<E>> s;
-		//iterate thru things based on key values; 
+		//iterate thru things based on key values;
 		s = insert(new Stack<Node<E>>(), this.root, n);
 		System.out.println(s);
 		//System.out.println(this);
@@ -90,7 +90,7 @@ public class Treap<E extends Comparable<E>> {
 	public Stack<Node<E>> insert(Stack<Node<E>> s, Node<E> root, Node<E> n){
 		//if key is smaller than current node; > 0 means root is larger quantity; new node (smaller) should be in left branch.
 		s.add(root);
-		if(root.data.compareTo(n.data) > 0){ //do not account for equal 0 cos find handles that. 
+		if(root.data.compareTo(n.data) > 0){ //do not account for equal 0 cos find handles that.
 			//if left branch exists
 			if(root.left != null)
 				return insert(s, root.left, n);
@@ -106,7 +106,7 @@ public class Treap<E extends Comparable<E>> {
 
 	private void reheap(Stack<Node<E>> s, Node<E> curr) {
 		// helper to add, restores invariant
-		
+
 		//rotate given current node (n) and stack end
 
 		/*
@@ -114,7 +114,7 @@ public class Treap<E extends Comparable<E>> {
 			compare curr data against parent data to check:
 				if curr is left branch, rotate right.
 				if curr is right branch, rotate left.
-			pop stack each iteration until stack is empty or 
+			pop stack each iteration until stack is empty or
 			prio is less than upcoming node in stack
 		*/
 
@@ -122,21 +122,36 @@ public class Treap<E extends Comparable<E>> {
 		while(true){
 			if(s.isEmpty()) break;
 			Node<E> parent = s.pop();
+			if(parent == null) break;
+			System.out.println(parent);
+			System.out.println(s);
+			System.out.println(curr);
+			System.out.println("BEFORE -------");
+			System.out.println(this);
 			Node<E> grandparent = s.isEmpty() ? null : s.peek();
-			System.out.println(parent.data);
-			System.out.println(curr.data);
-			//if curr is to left of parent
-			if(curr.priority >= parent.priority){
+			System.out.println(curr.priority);
+			System.out.println(parent.priority);
+			if(curr.priority > parent.priority){
+				System.out.println("hi");
 				if(curr.data.compareTo(parent.data) < 0){ //not considering = since that should be handled by find.
 					System.out.println("rotate right");
 					//ROTATE RETURNS A VALUE. USE THAT
+					System.out.println("INVAR -------");
 					Node<E> invariant = parent.rotateRight();
+					System.out.println(invariant);
+					System.out.println("AFTER -------");
+					//p sure the issue is rotating when there's only two nodes;
+					//no grandparent to attach to, rotation fails. find a way to set the
+					//treap equal to the rotated two nodes without needing to attach
+					//to grandparent
 					if(grandparent == null) {
+						System.out.println("grandparent null");
+						this.root = invariant;
 						System.out.println(this);
-						continue;	
+						continue;
 					}
 					//> attach rotated branch to grandparent (if have)
-					if(grandparent.left.equals(parent))
+					if(grandparent.left != null && grandparent.left.equals(parent))
 						grandparent.left = invariant;
 					else
 						grandparent.right = invariant;
@@ -145,13 +160,20 @@ public class Treap<E extends Comparable<E>> {
 				}
 				System.out.println("rotate left");
 				Node<E> invariant = parent.rotateLeft();
+				System.out.println("INVAR -------");
+				System.out.println(invariant);
+				System.out.println("AFTER -------");
 				//System.out.println(this);
-				
+
 				if(grandparent == null) {
+					System.out.println("grandparent null");
+					this.root = invariant;
 					System.out.println(this);
 					continue;
 				}
-				if(grandparent.left.equals(parent))
+				System.out.println(grandparent);
+				System.out.println(parent);
+				if(grandparent.left != null && grandparent.left.equals(parent))
 					grandparent.left = invariant;
 				else
 					grandparent.right = invariant;
@@ -168,13 +190,13 @@ public class Treap<E extends Comparable<E>> {
 	boolean find(E key) {
 		// return if node with key key exists
 		//traverse tree, if found key return true. else false.
-		
+
 		return findHelper(key, this.root);
 	}
-	
+
 	boolean findHelper(E key, Node<E> root){
 		if(root.data.compareTo(key) == 0) return true;
-		
+
 		//basically use it lose it except i used one variable cos i didnt think to be more understandable and use two
 		boolean r = false;
 		if(root.left != null){
@@ -235,7 +257,7 @@ public class Treap<E extends Comparable<E>> {
 		System.out.println(t.find(13));
 		System.out.println(t.find(14));
 		System.out.println(t.find(15)); */
-		
+
 		/* Treap<Character> t = new Treap<Character>();
 		t.add('p', 99);
 		t.add('g', 80);
@@ -252,12 +274,13 @@ public class Treap<E extends Comparable<E>> {
 		Node<Integer> root = new Node<Integer>(4, 19);
 		String s1 = root.toString();
 		System.out.println(s);
-		System.out.println(s1); */
-		//System.out.println(t.find('i') ? "Pass: found i": "Failed to find i\n" + s + "\n" + s1);
+		System.out.println(s1);
+		System.out.println(t.find('i') ? "Pass: found i": "Failed to find i\n" + s + "\n" + s1);
 
+		System.out.println("SPLIT -----------------------"); */
 		/* testTree.add(5);
 		testTree.add(4, 19);
-		testTree.find(5) */
+		testTree.find(5)
 
 		/* System.out.println("Test 1 ---------------------------");
 		Treap<Integer> testTree = new Treap<Integer>();
@@ -295,7 +318,7 @@ public class Treap<E extends Comparable<E>> {
 		testTree.add(5, 83);
 		System.out.println(testTree.toString());
 		/* testTree.delete(3);
-		String s = testTree.toString();	
+		String s = testTree.toString();
 		Node<Integer> root = new Node<Integer>(1, 84);
 		root.right = new Node<Integer>(5, 83);
 		root.right.left = new Node<Integer>(2, 31);
@@ -311,7 +334,7 @@ public class Treap<E extends Comparable<E>> {
 		System.out.println(testTree.find(5) ? "Pass: found 5": "Failed to find 5\n" + s + "\n" + s1);
 		System.out.println(testTree.find(7) ? "Pass: found 7": "Failed to find 7\n" + s + "\n" + s1);
 		*/
-		
+		//!HERE
 		System.out.println("Test 4 ---------------------------");
 		Treap<Integer> testTree = new Treap<Integer>();
 		testTree.add(4, 19);
@@ -338,7 +361,7 @@ public class Treap<E extends Comparable<E>> {
 		System.out.println(testTree.find(n) ? "Pass: found "+n: "Failed to find 4\n"+s+"\n"+s1);
 		n = 7;
 		System.out.println(testTree.find(n) ? "Pass: found "+n: "Failed to find 4\n"+s+"\n"+s1);
-		
+
 		/*
 		System.out.println("Test 5 ---------------------------");
 		testTree = new Treap<Integer>();
@@ -364,7 +387,7 @@ public class Treap<E extends Comparable<E>> {
 		for (int i : a) {
 			System.out.println(testTree.find(i) ? "Pass: found "+i: "Failed to find 4\n"+s+"\n"+s1);
 		}
-		
+
 		System.out.println("Test 6 ---------------------------");
 		Treap<Character> t = new Treap<Character>();
 		t.add('p', 99);
@@ -395,7 +418,7 @@ public class Treap<E extends Comparable<E>> {
 		for (char i : b) {
 			System.out.println(t.find(i) ? "Pass: found "+i: "Failed to find 4\n"+s+"\n"+s1);
 		}
-		
+
 		System.out.println("Test 7 ---------------------------");
 		Treap<String> tests = new Treap<String>();
 		tests.add("p", 99);
@@ -430,8 +453,8 @@ public class Treap<E extends Comparable<E>> {
 		for (String i : d) {
 			System.out.println(tests.find(i) ? "Pass: found "+i: "Failed to find 4\n"+s+"\n"+s1);
 		}
-		
-		
+
+
 		System.out.println("Test 8 ---------------------------");
 		tests = new Treap<String>();
 		tests.add("p", 99);
