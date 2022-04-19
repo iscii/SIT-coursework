@@ -162,26 +162,20 @@ public class Treap<E extends Comparable<E>> {
 			}
 			else{
 				if(node.left.data.compareTo(node.right.data) < 0){ //will not cover equals but w/e
-					System.out.println("rotate left");
+					//System.out.println("rotate left");
 					r = node.rotateLeft();
 				}
 				else{
-					System.out.println("rotate right");
+					//System.out.println("rotate right");
 					r = node.rotateRight();
 				}
 			}
-			System.out.println(r);
-			System.out.println(parent);
-			//got the w right; just gotta attach the w to z1
-			//somehow u is missing from p
 			if(parent.left != null && parent.left.equals(node)){
 				parent.left = r;
-				System.out.println(this);
 				if(r == null || r == node.left || r == node.right) break;
 			}
 			else{
 				parent.right = r;
-				System.out.println(this);
 				if(r == null || r == node.left || r == node.right) break;
 			}
 		}
@@ -446,7 +440,7 @@ public class Treap<E extends Comparable<E>> {
 		}
 		*/
 
-		System.out.println("Test 7 ---------------------------");
+		/* System.out.println("Test 7 ---------------------------");
 		Treap<String> tests = new Treap<String>();
 		tests.add("p", 99);
 		tests.add("g", 80);
@@ -482,7 +476,7 @@ public class Treap<E extends Comparable<E>> {
 		System.out.println(s);
 		System.out.println(s1);
 		System.out.println(!tests.find(e) ? "Pass: failed to find "+e: "Failed: found "+e+" (not supposed to)\n"+s+"\n"+s1);
-
+ */
 		/*
 		System.out.println("Test 8 ---------------------------");
 		tests = new Treap<String>();
