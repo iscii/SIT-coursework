@@ -78,11 +78,7 @@ public class Treap<E extends Comparable<E>> {
 		}
 		if(find(key)) return false;
 
-		Stack<Node<E>> s;
-		//iterate thru things based on key values;
-		s = insert(new Stack<Node<E>>(), this.root, n);
-		System.out.println(s);
-		//System.out.println(this);
+		Stack<Node<E>> s = insert(new Stack<Node<E>>(), this.root, n);
 		reheap(s, n);
 		return true;
 	}
@@ -105,105 +101,130 @@ public class Treap<E extends Comparable<E>> {
 	}
 
 	private void reheap(Stack<Node<E>> s, Node<E> curr) {
-		// helper to add, restores invariant
+		// helper to add, restores r
 
-		//rotate given current node (n) and stack end
-
-		/*
-			iterate while curr prio is less than parent prio
-			compare curr data against parent data to check:
-				if curr is left branch, rotate right.
-				if curr is right branch, rotate left.
-			pop stack each iteration until stack is empty or
-			prio is less than upcoming node in stack
-		*/
-
-		//TODO: Figure out rotateleft and right
 		while(true){
-			if(s.isEmpty()) break;
+			if(s.isEmpty()) break; //break if s is empty or only one node
 			Node<E> parent = s.pop();
-			if(parent == null) break;
-			System.out.println(parent);
-			System.out.println(s);
-			System.out.println(curr);
-			System.out.println("BEFORE -------");
-			System.out.println(this);
 			Node<E> grandparent = s.isEmpty() ? null : s.peek();
-			System.out.println(curr.priority);
-			System.out.println(parent.priority);
+
 			if(curr.priority > parent.priority){
-				System.out.println("hi");
 				if(curr.data.compareTo(parent.data) < 0){ //not considering = since that should be handled by find.
-					System.out.println("rotate right");
-					//ROTATE RETURNS A VALUE. USE THAT
-					System.out.println("INVAR -------");
-					Node<E> invariant = parent.rotateRight();
-					System.out.println(invariant);
-					System.out.println("AFTER -------");
-					//p sure the issue is rotating when there's only two nodes;
-					//no grandparent to attach to, rotation fails. find a way to set the
-					//treap equal to the rotated two nodes without needing to attach
-					//to grandparent
+					//System.out.println("rotate right");
+					
+					Node<E> r = parent.rotateRight();
+					//if no grandparent, set root to rotated node
 					if(grandparent == null) {
-						System.out.println("grandparent null");
-						this.root = invariant;
-						System.out.println(this);
+						this.root = r;
 						continue;
 					}
 					//> attach rotated branch to grandparent (if have)
 					if(grandparent.left != null && grandparent.left.equals(parent))
-						grandparent.left = invariant;
+						grandparent.left = r;
 					else
-						grandparent.right = invariant;
-					System.out.println(this);
+						grandparent.right = r;
 					continue;
 				}
-				System.out.println("rotate left");
-				Node<E> invariant = parent.rotateLeft();
-				System.out.println("INVAR -------");
-				System.out.println(invariant);
-				System.out.println("AFTER -------");
-				//System.out.println(this);
-
+				//System.out.println("rotate left");
+				
+				Node<E> r = parent.rotateLeft();
 				if(grandparent == null) {
-					System.out.println("grandparent null");
-					this.root = invariant;
-					System.out.println(this);
+					this.root = r;
 					continue;
 				}
-				System.out.println(grandparent);
-				System.out.println(parent);
 				if(grandparent.left != null && grandparent.left.equals(parent))
-					grandparent.left = invariant;
+					grandparent.left = r;
 				else
-					grandparent.right = invariant;
-				System.out.println(this);
+					grandparent.right = r;
 			}
-
 		}
 	}
 
 	public boolean delete(E key) {
-		return false;
+		// if either the left or right child does not exist, replace the target node with the non-null child
+		//if both left and right subtree exists, rotate in the direction of the smaller child
+
+		Node<E> node = findHelper(key, this.root);
+		if(node == null) return false;
+
+		while(true){
+			Node<E> parent = trace(new Stack<Node<E>>(), this.root, node).pop();
+			Node<E> r;
+			//left child smaller than right child
+			if(node.left == null && node.right == null){
+				r = null;
+			}
+			else if(node.left == null){
+				r = node.right;
+			}
+			else if(node.right == null){
+				r = node.left;
+			}
+			else{
+				if(node.left.data.compareTo(node.right.data) < 0){ //will not cover equals but w/e
+					System.out.println("rotate left");
+					r = node.rotateLeft();
+				}
+				else{
+					System.out.println("rotate right");
+					r = node.rotateRight();
+				}
+			}
+			System.out.println(r);
+			System.out.println(parent);
+			//got the w right; just gotta attach the w to z1
+			//somehow u is missing from p
+			if(parent.left != null && parent.left.equals(node)){
+				parent.left = r;
+				System.out.println(this);
+				if(r == null || r == node.left || r == node.right) break;
+			}
+			else{
+				parent.right = r;
+				System.out.println(this);
+				if(r == null || r == node.left || r == node.right) break;
+			}
+		}
+		
+		return true;
+	}
+
+	public Stack<Node<E>> trace(Stack<Node<E>> s, Node<E> root, Node<E> target){
+		if(root.data.compareTo(target.data) == 0) return new Stack<Node<E>>();
+
+		s.add(root);
+		//if left branch exists
+		if(root.data.compareTo(target.data) > 0){ //do not account for equal 0 cos find handles that.
+			//if left branch exists
+			if(root.left != null && !root.left.equals(target))
+				return trace(s, root.left, target);
+			return s;
+		}
+		else{
+			if(root.right != null && !root.right.equals(target))
+				return trace(s, root.right, target);
+			return s;
+		}
+
 	}
 
 	boolean find(E key) {
 		// return if node with key key exists
 		//traverse tree, if found key return true. else false.
 
-		return findHelper(key, this.root);
+		return findHelper(key, this.root) != null;
 	}
 
-	boolean findHelper(E key, Node<E> root){
-		if(root.data.compareTo(key) == 0) return true;
+	Node<E> findHelper(E key, Node<E> root){
+		if(root.data.compareTo(key) == 0) return root;
 
 		//basically use it lose it except i used one variable cos i didnt think to be more understandable and use two
-		boolean r = false;
+		Node<E> r = null;
 		if(root.left != null){
 			r = findHelper(key, root.left);
 		}
 		if(root.right != null){
-			r = r ? r : findHelper(key, root.right); //if r is already true from root.left, don't change it
+			r = r != null ? r : findHelper(key, root.right); //if r is already true from root.left, don't change it
 		}
 		return r;
 	}
@@ -277,6 +298,17 @@ public class Treap<E extends Comparable<E>> {
 		System.out.println(s1);
 		System.out.println(t.find('i') ? "Pass: found i": "Failed to find i\n" + s + "\n" + s1);
 
+  (key=5, priority=83)
+    (key=2, priority=31)
+      null
+      (key=3, priority=12)
+        null
+        null
+    (key=6, priority=70)
+      null
+      (key=7, priority=26)
+        null
+        nu
 		System.out.println("SPLIT -----------------------"); */
 		/* testTree.add(5);
 		testTree.add(4, 19);
@@ -307,8 +339,8 @@ public class Treap<E extends Comparable<E>> {
 		String s1 = root.toString();
 		System.out.println(testTree.find(5) ? "Pass: found 5": "Failed to find 5\n" + s + "\n" + s1);
  		 */
-		/*
-		System.out.println("Test 3 ---------------------------");
+		
+		/* System.out.println("Test 3 ---------------------------");
 		Treap<Integer> testTree = new Treap<Integer>();
 		testTree.add(4, 19);
 		testTree.add(2, 31);
@@ -317,7 +349,7 @@ public class Treap<E extends Comparable<E>> {
 		testTree.add(3, 12);
 		testTree.add(5, 83);
 		System.out.println(testTree.toString());
-		/* testTree.delete(3);
+		testTree.delete(3);
 		String s = testTree.toString();
 		Node<Integer> root = new Node<Integer>(1, 84);
 		root.right = new Node<Integer>(5, 83);
@@ -326,16 +358,10 @@ public class Treap<E extends Comparable<E>> {
 		root.right.right = new Node<Integer>(6, 70);
 		root.right.right.right = new Node<Integer>(7, 26);
 		String s1 = root.toString();
-		System.out.println(!testTree.find(3) ? "Pass: failed to find 3": "Failed: found 3 (not supposed to)\n" + s + "\n" + s1);
-		System.out.println(testTree.find(4) ? "Pass: found 4": "Failed to find 4\n" + s + "\n" + s1);
-		System.out.println(testTree.find(2) ? "Pass: found 2": "Failed to find 2\n" + s + "\n" + s1);
-		System.out.println(testTree.find(6) ? "Pass: found 6": "Failed to find 6\n" + s + "\n" + s1);
-		System.out.println(testTree.find(1) ? "Pass: found 1": "Failed to find 1\n" + s + "\n" + s1);
-		System.out.println(testTree.find(5) ? "Pass: found 5": "Failed to find 5\n" + s + "\n" + s1);
-		System.out.println(testTree.find(7) ? "Pass: found 7": "Failed to find 7\n" + s + "\n" + s1);
-		*/
-		//!HERE
-		System.out.println("Test 4 ---------------------------");
+		System.out.println(!testTree.find(3) ? "Pass: failed to find 3:\n" + s + "\n" + s1 : "Failed: found 3 (not supposed to)\n" + s + "\n" + s1);
+		 */
+		
+		/* System.out.println("Test 4 ---------------------------");
 		Treap<Integer> testTree = new Treap<Integer>();
 		testTree.add(4, 19);
 		testTree.add(2, 31);
@@ -361,7 +387,7 @@ public class Treap<E extends Comparable<E>> {
 		System.out.println(testTree.find(n) ? "Pass: found "+n: "Failed to find 4\n"+s+"\n"+s1);
 		n = 7;
 		System.out.println(testTree.find(n) ? "Pass: found "+n: "Failed to find 4\n"+s+"\n"+s1);
-
+ */
 		/*
 		System.out.println("Test 5 ---------------------------");
 		testTree = new Treap<Integer>();
@@ -418,6 +444,7 @@ public class Treap<E extends Comparable<E>> {
 		for (char i : b) {
 			System.out.println(t.find(i) ? "Pass: found "+i: "Failed to find 4\n"+s+"\n"+s1);
 		}
+		*/
 
 		System.out.println("Test 7 ---------------------------");
 		Treap<String> tests = new Treap<String>();
@@ -434,7 +461,7 @@ public class Treap<E extends Comparable<E>> {
 		tests.add("z1", 35);
 		tests.add("z2", 30);
 		tests.delete("z");
-		s = tests.toString();
+		String s = tests.toString();
 		Node<String> rs = new Node<String>("p", 99);
 		rs.left = new Node<String>("g", 80);
 		rs.left.left = new Node<String>("a", 60);
@@ -446,15 +473,17 @@ public class Treap<E extends Comparable<E>> {
 		rs.right.right.left.left = new Node<String>("v", 21);
 		rs.right.right.left.right = new Node<String>("x", 25);
 		rs.right.right.right = new Node<String>("z2", 30);
-		s1 = rs.toString();
+		String s1 = rs.toString();
 		String[] d = {"p", "g", "a", "j", "u", "r", "w", "v", "", "z1", "z2"};
 		String e = "z";
-		System.out.println(!tests.find(e) ? "Pass: failed to find "+e: "Failed: found "+e+" (not supposed to)\n"+s+"\n"+s1);
 		for (String i : d) {
-			System.out.println(tests.find(i) ? "Pass: found "+i: "Failed to find 4\n"+s+"\n"+s1);
+			System.out.println(tests.find(i) ? "Pass: found "+i: "Failed: Failed to find " + i);
 		}
+		System.out.println(s);
+		System.out.println(s1);
+		System.out.println(!tests.find(e) ? "Pass: failed to find "+e: "Failed: found "+e+" (not supposed to)\n"+s+"\n"+s1);
 
-
+		/*
 		System.out.println("Test 8 ---------------------------");
 		tests = new Treap<String>();
 		tests.add("p", 99);
